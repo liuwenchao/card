@@ -13,7 +13,14 @@
 	"condition": {
 		"weapp": {
 			"current": -1,
-			"list": []
+			"list": [
+				{
+					"id": -1,
+					"name": "打开分享",
+					"pathName": "pages/p/i",
+					"query": "t=testbalala"
+				}
+			]
 		},
 		"search": {
 			"current": -1,

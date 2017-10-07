@@ -1,10 +1,8 @@
 //app.js
 App({
-  onLaunch: function () {
-    // 展示本地存储能力
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
+  onLaunch: function (options) {
+    wx.setStorageSync('t', options.query.t)
+    console.log(options)
 
     // 登录
     wx.login({
@@ -30,6 +28,17 @@ App({
             }
           })
         }
+      }
+    })
+  },
+  onLoad: function (options) {
+    wx.showShareMenu({
+      withShareTicket: true,
+      success: function (e) {
+        //console.log(e)
+      },
+      complete: function (e) {
+        console.log(e)
       }
     })
   },

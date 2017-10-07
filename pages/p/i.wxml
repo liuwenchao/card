@@ -1,0 +1,15 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="userinfo">
+    <button class="image-button" wx:if="{{!imageUrl}}" bindtap='chooseImage'> + </button>
+    <block wx:else>
+      <image src="{{imageUrl}}" mode="widthFix" background-size="cover" bindtap='chooseImage'></image>
+    </block>
+  </view>
+  <view class="usermotto">
+    <textarea value="{{t}}" placeholder='输入文字' bindblur='setText'></textarea>
+  </view>
+  <view class="buttons">
+    <button class="save-button" open-type="share">保存并分享</button>
+  </view>
+</view>

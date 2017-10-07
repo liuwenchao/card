@@ -4,7 +4,7 @@ const app = getApp()
 
 Page({
   data: {
-    t: 'Hello World',
+    t: wx.getStorageSync('t'),
     imageUrl: undefined,
     userInfo: {},
     hasUserInfo: false,
@@ -33,26 +33,11 @@ Page({
       }
     } else {
       // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
-          })
-        }
-      })
+      
     }
   },
-  getUserInfo: function(e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
-  },
-  chooseImage: ()=> {
+  chooseImage: function () {
+    var that = this
     wx.chooseImage({
       count: 1,
       success: function(res) {
@@ -62,12 +47,34 @@ Page({
           tempFilePath: tempFilePaths[0],
           success: function (res) {
             var savedFilePath = res.savedFilePath
-            this.setData({
+            that.setData({
               imageUrl: savedFilePath
             })
           }
         })
       },
     })
+  },
+  setText: function (e) {
+    this.setData({
+      t: e.detail.value
+    })
+    wx.setStorageSync('t', e.detail.value)
+  },
+  onShareAppMessage: function (res) {
+    return {
+      title: this.data.t,
+      imageUrl: this.data.imageUrl,
+      desc: this.data.t,
+      path: '/pages/p/i?t='+this.data.t,
+      success: function (res) {
+        // 转发成功
+        console.log(res)
+        
+      },
+      fail: function (res) {
+        // 转发失败
+      }
+    }
   }
 })

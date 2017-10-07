@@ -5,19 +5,12 @@
   align-items: center;
 }
 
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
-}
-
-.userinfo-nickname {
-  color: #aaa;
-}
-
 .usermotto {
-  margin-top: 200px;
+  margin-top: 20px;
+}
+
+.buttons {
+  z-index: 100;
 }
 
 .save-button {
@@ -28,5 +21,7 @@
 }
 
 .image-button {
-  width: 5rem;
+  width: 10rem;
+  height: 10rem;
+  padding-top: 3rem;
 }
